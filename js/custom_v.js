@@ -1,6 +1,5 @@
 const btt=document.querySelector('#back-to-top');
 let scrollAmount;
-//console.log(window)
 window.addEventListener('scroll',function(){
     scrollAmount=this.scrollY;
     if(scrollAmount>scrollAmount/12){

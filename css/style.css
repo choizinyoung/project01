@@ -119,6 +119,7 @@
   color: #36efd9;
 }
 .word li .language option {
+  color: #fff;
   background-color: #2f2f2f;
   font-size: 0.813rem;
 }
@@ -450,12 +451,6 @@
   padding: 40px 40px;
   text-align: left;
 }
-.con_box2 {
-  width: 550px;
-  height: 280px;
-  margin: 10px;
-  text-align: center;
-}
 .con_box3 {
   width: 545px;
   height: 280px;
@@ -566,53 +561,70 @@
   right: -3%;
 }
 /*content1_3box*/
-.slide_wrap {
+.con_box2 {
+  position: relative;
   width: 550px;
+  height: 280px;
+  margin: 10px;
+  text-align: center;
+  overflow: hidden;
+}
+.con_box2 .slide_wrap {
+  width: 100%;
   height: 230px;
+}
+.con_box2 .slide_wrap .slide_1 {
+  position: absolute;
+  width: 100%;
+  height: 230px;
+}
+.con_box2 .slide_wrap .slide_1 a img {
+  width: 100%;
+  height: 230px;
+}
+.con_box2 .slide_control {
+  background: #333;
+  width: 100%;
+  height: 50px;
   position: relative;
 }
-.slide_wrap .slide_1 {
-  position: absolute;
-}
-.slide_wrap .slide_1 a img {
-  width: 550px;
-  height: 230px;
-}
-.slide_control {
-  background: #333;
-  width: 550px;
-  height: 50px;
-}
-.slide_control p {
+.con_box2 .slide_control p {
   color: #fff;
   line-height: 50px;
-  margin-left: 20px;
+  position: absolute;
+  left: 4%;
 }
-.slide_control .slide_controler {
-  width: auto;
-  height: 50px;
-  margin-right: 20px;
+.con_box2 .slide_control img {
+  height: 13px;
+  position: absolute;
+  top: 18px;
+  cursor: pointer;
 }
-.slide_control .slide_controler a {
-  display: inline-block;
-  width: 41px;
-  height: 50px;
+.con_box2 .slide_control .slide_prev {
+  left: 83%;
 }
-.slide_control .slide_controler a:nth-child(2) {
+.con_box2 .slide_control .slide_play {
+  left: 88.7%;
+}
+.con_box2 .slide_control .slide_play.hide {
   display: none;
 }
-.slide_control .slide_controler a img {
-  margin-top: 19px;
-  width: 7px;
-  height: 11px;
+.con_box2 .slide_control .slide_stop {
+  left: 88%;
 }
+.con_box2 .slide_control .slide_stop.hide{
+  display: none;
+}
+.con_box2 .slide_control .slide_next {
+  left: 94%;
+}
+
 /*content1_4box*/
 .content1_4box {
   background: rgba(225, 103, 0, 0.9);
-  width: 465px;
-  height: 200px;
   padding: 40px 40px;
   margin: 10px;
+  box-sizing: border-box;
 }
 .content1_4box h4 {
   font-size: 22px;
@@ -1589,11 +1601,61 @@ a.con_box8:hover .box_txt {
   margin-bottom: 5px;
 }
 .con_box11 {
+  position: relative;
   width: 550px;
   height: 280px;
   margin-top: 20px;
-  box-sizing: border-box;
   text-align: center;
+  overflow: hidden;
+}
+.con_box11 .slide_wrap {
+  width: 100%;
+  height: 230px;
+}
+.con_box11 .slide_wrap .slide_1 {
+  position: absolute;
+  width: 100%;
+  height: 230px;
+}
+.con_box11 .slide_wrap .slide_1 a img {
+  width: 100%;
+  height: 230px;
+}
+.con_box11 .slide_control {
+  background: #333;
+  width: 100%;
+  height: 50px;
+  position: relative;
+}
+.con_box11 .slide_control p {
+  color: #fff;
+  line-height: 50px;
+  position: absolute;
+  left: 4%;
+}
+.con_box11 .slide_control img {
+  height: 13px;
+  position: absolute;
+  top: 18px;
+  cursor: pointer;
+}
+.con_box11 .slide_control .slide_prev {
+  left: 83%;
+}
+.con_box11 .slide_control .slide_play {
+  left: 88.7%;
+}
+.con_box11 .slide_control .slide_play.hide {
+  display: none;
+}
+.con_box11 .slide_control .slide_stop {
+  left: 88%;
+}
+.con_box11 .slide_control .slide_stop.hide{
+  display: none;
+}
+.con_box11 .slide_control .slide_next {
+  left: 94%;
 }
 /*footer*/
 #footer_nav {
@@ -1694,7 +1756,7 @@ a.con_box8:hover .box_txt {
   opacity: 0.5;
 }
 
-@media screen and (min-width: 1361px) and (max-width: 1440px) {
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
   #header {width: 100%;}
   #header_nav .m_1 a {font-size: 16px;}
   #header_top .libs::after {
@@ -1732,10 +1794,10 @@ a.con_box8:hover .box_txt {
     padding: 40px 1.4%;
   }
   .con_box2 {
-    width: 25%;
+    width: 37.5%;
   }
   .con_box3 {
-    width: 34%;
+    width: 39%;
   }
   #content2 {
     height: 902px;
@@ -1807,7 +1869,14 @@ a.con_box8:hover .box_txt {
     width: 17%;
   }
 }
-@media screen and (min-width: 701px) and (max-width: 1000px) {
+/* PC , 테블릿 가로 (해상도 768px ~ 1023px)*/
+@media all and (min-width:768px) and (max-width:1023px) { /*스타일입력*/}
 
-}
+/* 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width:768px) and (max-width:1023px) { /*스타일입력*/}
 
+/* 모바일 가로, 테블릿 세로 (해상도 480px ~ 767px)*/
+@media all and (min-width:480px) and (max-width:767px) { /*스타일입력*/}
+
+/* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/
+@media all and (max-width:479px) { /*스타일입력*/}

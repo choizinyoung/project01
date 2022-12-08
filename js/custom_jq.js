@@ -79,22 +79,18 @@ var slideWrapper = $(".ct2_box2_slidewrapper"),
   slideCount = slide.length,
   slideWidth = slide.width(),
   slideGap = 30,
-  moveAmt, // slideWidth+slideGap 움직일 너비
+  moveAmt,
   prevBtn = slideWrapper.find(".ct2_box2_prev"),
   nextBtn = slideWrapper.find(".ct2_box2_next"),
   newSlideWidth,
-  //반응형변수선언
   responsiveGap = 20,
   maxSlides = 3,
-  newSlides; //clone 된 요소를 담을 변수
+  newSlides;
 
 newSlideWidth = slideWidth;
 
-// 복사본 생성
-// append : 원본 뒤 추가 / clone : 복사 / prepend : 원본 앞에 추가
 slides.append(slide.clone().addClass("clone"));
 slides.prepend(slide.clone().addClass("clone"));
-// 가로 배치
 function slideLayout(sw, sm) {
   newSlides = $(".ct2_box2_slidewrapper li");
   moveAmt = sw + sm;
@@ -103,8 +99,6 @@ function slideLayout(sw, sm) {
   });
 }
 slideLayout(slideWidth, slideGap);
-
-// 슬라이드 이동함수
 function MoveSlide(num) {
   slides.stop().animate({ left: moveAmt * -num }, 100, function () {
     if (currentIdx == slideCount || currentIdx == -slideCount) {
@@ -114,30 +108,102 @@ function MoveSlide(num) {
   });
   currentIdx = num;
 }
-
-// 좌우버튼
 nextBtn.click(function () {
   MoveSlide(currentIdx + 1);
 });
 prevBtn.click(function () {
   MoveSlide(currentIdx - 1);
 });
-
-// 중앙배치
 function setslidePos() {
   var ulMoveAmt = -moveAmt * slideCount + "px";
   slides.css("transform", "translateX(" + ulMoveAmt + ")");
 }
 setslidePos();
 
+//con_box2
+
+$(function(){
+  var boxSlideWrap = $('.con_box2'),
+  boxSlides = boxSlideWrap.find('.slide_1'),
+  boxSlidesCount = boxSlides.length,
+  stopTimer,
+  current = 0,
+  leftBtn = boxSlideWrap.find('.slide_control > .slide_prev'),
+  rightBtn = boxSlideWrap.find('.slide_control > .slide_next'),
+  playBtn = boxSlideWrap.find('.slide_control > .slide_play'),
+  stopBtn = boxSlideWrap.find('.slide_control > .slide_stop');
+  
+  var slidePos = boxSlides.each(function(i){
+    $(this).css("left", i * 100 + "%");
+  });
+  
+  timer();
+  function timer() {
+    stopTimer = setInterval(function(){
+      var prev = boxSlides.eq(current);
+      move(prev, 0, "-100%");
+      current++;
+      if (current == boxSlidesCount) {
+        current = 0;
+      }
+      var next = boxSlides.eq(current);
+      move(next, "100%", "0%");
+      cnt(current);
+    }, 3000)
+  }
+  function move(tg, start, end) {
+    tg.css("left", start).stop().animate({ left: end }, 1000)
+  }
+  playBtn.click(function () {
+    $(this).addClass("hide");
+    stopBtn.removeClass("hide");
+    timer();
+  });
+  stopBtn.click(function() {
+    $(this).addClass("hide");
+    playBtn.removeClass("hide");
+    clearInterval(stopTimer);
+  });
+  rightBtn.click(function() {
+    var prev = boxSlides.eq(current);
+    move(prev, 0, "-100%");
+    current++;
+    if (current == boxSlidesCount) {
+      current = 0;
+    }
+    var next = boxSlides.eq(current);
+    move(next, "100%", "0%");
+    cnt(current);
+  });
+  leftBtn.click(function() {
+    var prev = boxSlides.eq(current);
+    move(prev, 0, "100%");
+    current--;
+    if (current < 0) {
+      current = boxSlidesCount -1;
+    }
+    var next = boxSlides.eq(current);
+    move(next, "-100%", "0%");
+    cnt(current)
+  });
+  var counterEl = "<span class='counter'>1 ";
+  $("#counter1").prepend(counterEl);
+  var counter = $(".counter");
+  function cnt(n){
+    counter.html(n+1);
+  }
+});
+
+//tab
 var targetLink = $("#newsmenu a"),
-  tabContent = $("#ct2_tab_wrapper>div");
+tabContent = $("#ct2_tab_wrapper>div");
 
 tabContent.eq(0).show();
 
 targetLink.each(function () {
   var tg = $(this);
   var tgAnc = tg.attr("href");
+  var notg = $(".notg");
   console.log(tg);
   tg.click(function (e) {
     e.preventDefault();
@@ -146,4 +212,80 @@ targetLink.each(function () {
     tabContent.hide();
     $(tgAnc).show();
   });
+  notg.click(function (e) {
+    e.unbind();
+  })
+});
+
+//con_box11
+$(function(){
+  var boxSlideWrap = $('.con_box11'),
+  boxSlides = boxSlideWrap.find('.slide_1'),
+  boxSlidesCount = boxSlides.length,
+  stopTimer,
+  current = 0,
+  leftBtn = boxSlideWrap.find('.slide_control > .slide_prev'),
+  rightBtn = boxSlideWrap.find('.slide_control > .slide_next'),
+  playBtn = boxSlideWrap.find('.slide_control > .slide_play'),
+  stopBtn = boxSlideWrap.find('.slide_control > .slide_stop');
+  
+  var slidePos = boxSlides.each(function(i){
+    $(this).css("left", i * 100 + "%");
+  });
+  
+  timer();
+  function timer() {
+    stopTimer = setInterval(function(){
+      var prev = boxSlides.eq(current);
+      move(prev, 0, "-100%");
+      current++;
+      if (current == boxSlidesCount) {
+        current = 0;
+      }
+      var next = boxSlides.eq(current);
+      move(next, "100%", "0%");
+      cnt(current);
+    }, 3000)
+  }
+  function move(tg, start, end) {
+    tg.css("left", start).stop().animate({ left: end }, 1000)
+  }
+  playBtn.click(function () {
+    $(this).addClass("hide");
+    stopBtn.removeClass("hide");
+    timer();
+  });
+  stopBtn.click(function() {
+    $(this).addClass("hide");
+    playBtn.removeClass("hide");
+    clearInterval(stopTimer);
+  });
+  rightBtn.click(function() {
+    var prev = boxSlides.eq(current);
+    move(prev, 0, "-100%");
+    current++;
+    if (current == boxSlidesCount) {
+      current = 0;
+    }
+    var next = boxSlides.eq(current);
+    move(next, "100%", "0%");
+    cnt(current);
+  });
+  leftBtn.click(function() {
+    var prev = boxSlides.eq(current);
+    move(prev, 0, "100%");
+    current--;
+    if (current < 0) {
+      current = boxSlidesCount -1;
+    }
+    var next = boxSlides.eq(current);
+    move(next, "-100%", "0%");
+    cnt(current)
+  });
+  var counterEl = "<span class='counter'>1 ";
+  $("#counter2").prepend(counterEl);
+  var counter = $(".counter");
+  function cnt(n){
+    counter.html(n+1);
+  }
 });
